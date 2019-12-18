@@ -234,6 +234,8 @@ end
 Kill(ReputationWatchBar)
 Kill(HonorWatchBar)
 Kill(MainMenuBarMaxLevelBar) -- Fixed visual bug when unequipping artifact weapon at max level
+Kill(KeyRingButton)
+Kill(MainMenuBarBackpackButton)
 
 -- disable "Show as Experience Bar" checkbox
 ReputationDetailMainScreenCheckBox:Disable()
@@ -264,14 +266,14 @@ local function MoveMicroButtonsToBottomRight()
 		local button, previousButton = _G[MICRO_BUTTONS[i]], _G[MICRO_BUTTONS[i-1]]
 
 		button:ClearAllPoints()
-		-- button:SetSize(28, 58)
+		 button:SetSize(28, 58)
 
 		if i == 1 then
-			button:SetPoint("BOTTOMRIGHT", UIParent, -198, 4)
+			button:SetPoint("BOTTOMLEFT", UIParent, 800, -33)
 		elseif i == 4 and UnitLevel("player") < SHOW_SPEC_LEVEL then
 			button:SetPoint("BOTTOMLEFT", previousButton, "BOTTOMRIGHT", 0, 0)
 		else
-			button:SetPoint("BOTTOMRIGHT", previousButton, 28, 0)
+			button:SetPoint("BOTTOMRIGHT", previousButton, 25, 0)
 		end
 	end
 
@@ -292,8 +294,9 @@ local function MoveMicroButtonsToBottomRight()
 	for i = 0, 3 do
 		local bagFrame, previousBag = _G["CharacterBag" .. i .. "Slot"], _G["CharacterBag" .. i-1 .. "Slot"]
 
-		bagFrame:SetScale(0.75)
+		bagFrame:SetScale(1)
 		bagFrame:ClearAllPoints()
+		bagFrame:Hide()
 
 		if i == 0 then
 			bagFrame:SetPoint("BOTTOMRIGHT", MainMenuBarBackpackButton, "BOTTOMLEFT", -9, 1)
